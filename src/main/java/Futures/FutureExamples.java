@@ -66,4 +66,13 @@ public class FutureExamples {
                 .thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"))
                 .thenApply(s -> s + "!!!");
     }
+
+    public CompletableFuture<String> thenCombineExample() {
+        return CompletableFuture
+                .supplyAsync(() -> "Hello")
+                .thenCombine(CompletableFuture.supplyAsync(() -> "World")
+                        , (s1, s2) -> s1 + s2)
+                .thenCombine(CompletableFuture.supplyAsync(() -> "!!!!")
+                        , (s1, s2) -> s1 + s2);
+    }
 }

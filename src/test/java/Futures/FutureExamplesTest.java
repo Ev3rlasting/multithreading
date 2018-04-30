@@ -81,5 +81,10 @@ public class FutureExamplesTest {
     public void thenComposeTest() throws ExecutionException, InterruptedException {
         System.out.println(futureExamples.thenComposeExample().get());
     }
+    
+    @Test
+    public void thenCombineTest() throws ExecutionException, InterruptedException {
+        System.out.println(futureExamples.thenCombineExample().get());
+    }
 
 }
