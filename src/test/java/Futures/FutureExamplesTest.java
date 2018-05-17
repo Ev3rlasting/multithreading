@@ -2,6 +2,7 @@ package Futures;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -81,10 +82,17 @@ public class FutureExamplesTest {
     public void thenComposeTest() throws ExecutionException, InterruptedException {
         System.out.println(futureExamples.thenComposeExample().get());
     }
-    
+
     @Test
     public void thenCombineTest() throws ExecutionException, InterruptedException {
         System.out.println(futureExamples.thenCombineExample().get());
+    }
+
+    @Test
+    public void websiteCrawlerTest() throws ExecutionException, InterruptedException, IOException {
+
+        futureExamples.websiteCrawlerWithFixedThreadPool();
+        futureExamples.websiteCrawlerWithCompletionExecutorService();
     }
 
 }
