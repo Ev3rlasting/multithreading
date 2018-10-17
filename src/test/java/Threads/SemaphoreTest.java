@@ -7,24 +7,25 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SemaphoreTest {
 
     @Test
-    public void semaphoreBasicTest() {
+    public void semaphoreBasicTest() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Semaphore semaphore = new Semaphore(3);
         List<Worker> workers = Stream.generate(() -> new Worker(semaphore)).limit(10).collect(Collectors.toList());
         workers.forEach(w -> {
             executorService.submit(w);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         });
+        executorService.shutdown();
+        executorService.awaitTermination(2000, TimeUnit.SECONDS);
+        
+
     }
 
     class Worker implements Runnable {
