@@ -72,7 +72,10 @@ public class HeapSort {
      * [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9]
      */
     public static void main(String[] args) {
-        System.out.println("".hashCode());
+        int[]arr = new int[]{3,4,5,8,4,6,1,2};
+        HeapSort hs = new HeapSort(arr);
+        hs.sort();
+        System.out.println(hs.arr);
     }
 }
     
